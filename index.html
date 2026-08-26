@@ -27,8 +27,50 @@ tailwind.config = {
   body { font-family: 'Cairo', sans-serif; }
   body.lang-en { font-family: 'Montserrat', sans-serif; }
   html { scroll-behavior: smooth; }
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ===== SCROLL PROGRESS BAR ===== */
+  #scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3.5px;
+    background: linear-gradient(90deg, #f97316, #002b80, #38bdf8);
+    z-index: 100;
+    width: 0%;
+    transition: width 0.1s ease-out;
+  }
+
+  /* ===== ADVANCED SCROLL-TRIGGERED REVEAL SYSTEM ===== */
+  .reveal {
+    opacity: 0;
+    will-change: transform, opacity;
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Variations */
+  .reveal-up { transform: translateY(40px); }
+  .reveal-down { transform: translateY(-40px); }
+  .reveal-left { transform: translateX(-50px); }
+  .reveal-right { transform: translateX(50px); }
+  .reveal-scale { transform: scale(0.88) translateY(25px); }
+
+  /* Active state */
+  .reveal.visible {
+    opacity: 1;
+    transform: translate(0) scale(1);
+  }
+
+  /* Staggered Delays for Grid Cascades */
+  .stagger-1 { transition-delay: 0.08s; }
+  .stagger-2 { transition-delay: 0.16s; }
+  .stagger-3 { transition-delay: 0.24s; }
+  .stagger-4 { transition-delay: 0.32s; }
+  .stagger-5 { transition-delay: 0.40s; }
+  .stagger-6 { transition-delay: 0.48s; }
+  .stagger-7 { transition-delay: 0.56s; }
+  .stagger-8 { transition-delay: 0.64s; }
+  .stagger-9 { transition-delay: 0.72s; }
+
   .tooth-float { animation: floaty 6s ease-in-out infinite; }
   @keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
 
@@ -46,6 +88,9 @@ tailwind.config = {
 </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-cairo">
+
+<!-- ============ SCROLL PROGRESS BAR ============ -->
+<div id="scroll-progress"></div>
 
 <!-- ============ NAVBAR ============ -->
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100">
@@ -84,39 +129,45 @@ tailwind.config = {
   <img src="https://i.ibb.co/q17Y0tS/enigma-banner.jpg" alt="Enigma Dental Care Banner" class="absolute inset-0 w-full h-full object-cover object-center">
   <div class="absolute inset-0 bg-gradient-to-l from-navy/95 via-navy/90 to-blue-900/85"></div>
   <div class="relative max-w-6xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
-    <div>
-      <span class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-xs font-bold tracking-wider" data-ar="<i class='fa-solid fa-tooth text-orange-400'></i> جراحة · تجميل · زراعة الأسنان" data-en="<i class='fa-solid fa-tooth text-orange-400'></i> Surgery · Aesthetics · Implants">
-        <i class="fa-solid fa-tooth text-orange-400"></i> جراحة · تجميل · زراعة الأسنان
-      </span>
-      <h2 class="text-4xl md:text-5xl font-black mt-5 leading-tight">
+    <div class="space-y-4">
+      <div class="reveal reveal-down">
+        <span class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-xs font-bold tracking-wider" data-ar="<i class='fa-solid fa-tooth text-orange-400'></i> جراحة · تجميل · زراعة الأسنان" data-en="<i class='fa-solid fa-tooth text-orange-400'></i> Surgery · Aesthetics · Implants">
+          <i class="fa-solid fa-tooth text-orange-400"></i> جراحة · تجميل · زراعة الأسنان
+        </span>
+      </div>
+
+      <h2 class="text-4xl md:text-5xl font-black leading-tight reveal reveal-right stagger-1">
         <span data-ar="رعاية أسنان متطورة" data-en="Advanced Dental Care">رعاية أسنان متطورة</span><br>
         <span class="text-orange-400" data-ar="وبأبسط الطرق" data-en="Simply Delivered">وبأبسط الطرق</span>
       </h2>
-      <p class="text-blue-100/90 mt-4 text-base md:text-lg leading-relaxed max-w-xl" data-ar="أنا <strong class='text-white'>د. هيثم أبو العينين</strong> — جراحة وتجميل وزراعة الأسنان بأحدث التقنيات. أؤمن أن الرعاية الممتازة تبدأ بالبساطة: تشخيص دقيق، خطة واضحة، ونتائج تدوم. أهلاً بك في عيادة إنيجما بمدينة دمنهور." data-en="I am <strong class='text-white'>Dr. Haitham Abou El-Enein</strong> — Specialist in oral surgery, aesthetics, and dental implants. Welcome to Enigma Clinic in Damanhour.">
+
+      <p class="text-blue-100/90 text-base md:text-lg leading-relaxed max-w-xl reveal reveal-right stagger-2" data-ar="أنا <strong class='text-white'>د. هيثم أبو العينين</strong> — جراحة وتجميل وزراعة الأسنان بأحدث التقنيات. أؤمن أن الرعاية الممتازة تبدأ بالبساطة: تشخيص دقيق، خطة واضحة، ونتائج تدوم. أهلاً بك في عيادة إنيجما بمدينة دمنهور." data-en="I am <strong class='text-white'>Dr. Haitham Abou El-Enein</strong> — Specialist in oral surgery, aesthetics, and dental implants. Welcome to Enigma Clinic in Damanhour.">
         أنا <strong class="text-white">د. هيثم أبو العينين</strong> — جراحة وتجميل وزراعة الأسنان بأحدث التقنيات.
         أؤمن أن الرعاية الممتازة تبدأ بالبساطة: تشخيص دقيق، خطة واضحة، ونتائج تدوم. أهلاً بك في عيادة إنيجما بمدينة دمنهور.
       </p>
-      <div class="flex flex-wrap gap-3 mt-8">
+
+      <div class="flex flex-wrap gap-3 pt-2 reveal reveal-up stagger-3">
         <a href="#prices" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-xl font-bold shadow-lg transition-all flex items-center gap-2">
           <i class="fa-solid fa-tag text-xl"></i> <span data-ar="شوف الأسعار" data-en="View Pricing">شوف الأسعار</span>
         </a>
       </div>
-      <div class="flex flex-wrap gap-6 mt-8 text-sm text-blue-100">
+
+      <div class="flex flex-wrap gap-6 pt-4 text-sm text-blue-100 reveal reveal-up stagger-4">
         <span class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-orange-400"></i> <span data-ar="دمنهور — برج البنا، قبل النفق" data-en="Damanhour — El-Banna Tower">دمنهور — برج البنا، قبل النفق</span></span>
         <span class="flex items-center gap-2"><i class="fa-solid fa-clock text-orange-400"></i> <span data-ar="السبت–الأربعاء: 2-8 مساءً" data-en="Sat–Wed: 2:00 PM – 8:00 PM">السبت–الأربعاء: 2-8 مساءً</span></span>
       </div>
     </div>
 
-    <div class="hidden md:flex justify-center">
+    <div class="hidden md:flex justify-center reveal reveal-scale stagger-2">
       <div class="relative">
         <div class="w-72 h-72 rounded-full bg-gradient-to-br from-orange-400/30 to-blue-400/20 border border-white/20 flex items-center justify-center tooth-float shadow-2xl">
           <i class="fa-solid fa-tooth text-[110px] text-white/90 drop-shadow-lg"></i>
         </div>
-        <div class="absolute -bottom-4 -right-2 bg-white text-navy rounded-2xl px-5 py-3 shadow-xl">
+        <div class="absolute -bottom-4 -right-2 bg-white text-navy rounded-2xl px-5 py-3 shadow-xl reveal reveal-right stagger-3">
           <p class="font-black text-lg leading-none" data-ar="+15 سنة" data-en="+15 Years">+15 سنة</p>
           <p class="text-[11px] font-bold text-slate-500" data-ar="خبرة في طب الأسنان" data-en="Dental Experience">خبرة في طب الأسنان</p>
         </div>
-        <div class="absolute -top-4 -left-2 bg-orange-500 text-white rounded-2xl px-5 py-3 shadow-xl">
+        <div class="absolute -top-4 -left-2 bg-orange-500 text-white rounded-2xl px-5 py-3 shadow-xl reveal reveal-left stagger-4">
           <p class="font-black text-lg leading-none" data-ar="أحدث التقنيات" data-en="Modern Tech">أحدث التقنيات</p>
           <p class="text-[11px] font-bold text-orange-100" data-ar="زراعة وتجميل" data-en="Implants & Aesthetics">زراعة وتجميل</p>
         </div>
@@ -131,8 +182,8 @@ tailwind.config = {
 <!-- ============ ABOUT ============ -->
 <section id="about" class="max-w-6xl mx-auto px-4 py-16 md:py-20">
   <div class="grid md:grid-cols-5 gap-10 items-center">
-    <div class="md:col-span-2 reveal">
-      <div class="rounded-3xl bg-gradient-to-br from-navy to-blue-800 p-1 shadow-xl">
+    <div class="md:col-span-2 reveal reveal-left">
+      <div class="rounded-3xl bg-gradient-to-br from-navy to-blue-800 p-1 shadow-xl hover:scale-[1.02] transition-transform duration-500">
         <div class="rounded-[22px] bg-white p-8 text-center">
           <h3 class="font-black text-xl text-navy mt-2" data-ar="د. هيثم محمد أبو العينين" data-en="Dr. Haitham Mohamed Abou El-Enein">د. هيثم محمد أبو العينين</h3>
           <p class="text-sm font-bold text-orange-500 mt-1" data-ar="مدرس واستشاري جراحة الفم والوجه والفكين" data-en="Lecturer & Consultant of Oral & Maxillofacial Surgery">مدرس واستشاري جراحة الفم والوجه والفكين</p>
@@ -145,27 +196,30 @@ tailwind.config = {
       </div>
     </div>
 
-    <div class="md:col-span-3 reveal">
-      <span class="text-orange-500 font-black text-sm tracking-widest" data-ar="من أنا" data-en="ABOUT ME">من أنا</span>
-      <h3 class="text-3xl md:text-4xl font-black text-navy mt-2" data-ar="رعاية متطورة… وبأبسط الطرق" data-en="Advanced Care… Keeping It Simple">رعاية متطورة… وبأبسط الطرق</h3>
-      <p class="text-slate-600 leading-relaxed mt-5" data-ar="أنا <strong class='text-slate-800'>د. هيثم محمد أبو العينين</strong> — مدرس واستشاري جراحة الفم والوجه والفكين، حاصل على الدكتوراه والماجستير في جراحة الفم والوجه والفكين، ومؤسس عيادة <strong class='text-slate-800'>Enigma Dental Care</strong> بمدينة دمنهور." data-en="I am <strong class='text-slate-800'>Dr. Haitham Mohamed Abou El-Enein</strong> — Lecturer & Consultant of Oral & Maxillofacial Surgery, PhD & Master's in Oral & Maxillofacial Surgery, and founder of <strong class='text-slate-800'>Enigma Dental Care</strong> in Damanhour.">
+    <div class="md:col-span-3 space-y-4">
+      <div class="reveal reveal-right">
+        <span class="text-orange-500 font-black text-sm tracking-widest" data-ar="من أنا" data-en="ABOUT ME">من أنا</span>
+        <h3 class="text-3xl md:text-4xl font-black text-navy mt-1" data-ar="رعاية متطورة… وبأبسط الطرق" data-en="Advanced Care… Keeping It Simple">رعاية متطورة… وبأبسط الطرق</h3>
+      </div>
+      
+      <p class="text-slate-600 leading-relaxed reveal reveal-right stagger-1" data-ar="أنا <strong class='text-slate-800'>د. هيثم محمد أبو العينين</strong> — مدرس واستشاري جراحة الفم والوجه والفكين، حاصل على الدكتوراه والماجستير في جراحة الفم والوجه والفكين، ومؤسس عيادة <strong class='text-slate-800'>Enigma Dental Care</strong> بمدينة دمنهور." data-en="I am <strong class='text-slate-800'>Dr. Haitham Mohamed Abou El-Enein</strong> — Lecturer & Consultant of Oral & Maxillofacial Surgery, PhD & Master's in Oral & Maxillofacial Surgery, and founder of <strong class='text-slate-800'>Enigma Dental Care</strong> in Damanhour.">
         أنا <strong class="text-slate-800">د. هيثم محمد أبو العينين</strong> — مدرس واستشاري جراحة الفم والوجه والفكين، حاصل على الدكتوراه والماجستير في جراحة الفم والوجه والفكين، ومؤسس عيادة <strong class="text-slate-800">Enigma Dental Care</strong> بمدينة دمنهور.
       </p>
-      <p class="text-slate-600 leading-relaxed mt-4" data-ar="فلسفتي بسيطة: <em>«Keeping It Simple»</em> — كل مريض يستحق تشخيصاً دقيقاً، وخطة علاج واضحة، وتجربة مريحة من أول زيارة حتى آخر لمسة في ابتسامته. أستخدم أحدث الأنظمة العالمية في الزراعة وتركيبات الزيركون والإيماكس التجميلية لضمان نتائج طبيعية تدوم." data-en="My philosophy is simple: <em>«Keeping It Simple»</em> — Every patient deserves accurate diagnosis, clear treatment plans, and comfortable care using top-tier international systems.">
+      <p class="text-slate-600 leading-relaxed reveal reveal-right stagger-2" data-ar="فلسفتي بسيطة: <em>«Keeping It Simple»</em> — كل مريض يستحق تشخيصاً دقيقاً، وخطة علاج واضحة، وتجربة مريحة من أول زيارة حتى آخر لمسة في ابتسامته. أستخدم أحدث الأنظمة العالمية في الزراعة وتركيبات الزيركون والإيماكس التجميلية لضمان نتائج طبيعية تدوم." data-en="My philosophy is simple: <em>«Keeping It Simple»</em> — Every patient deserves accurate diagnosis, clear treatment plans, and comfortable care using top-tier international systems.">
         فلسفتي بسيطة: <em>«Keeping It Simple»</em> — كل مريض يستحق تشخيصاً دقيقاً، وخطة علاج واضحة،
         وتجربة مريحة من أول زيارة حتى آخر لمسة في ابتسامته. أستخدم أحدث الأنظمة العالمية في الزراعة
         وتركيبات الزيركون والإيماكس التجميلية لضمان نتائج طبيعية تدوم.
       </p>
-      <div class="grid grid-cols-3 gap-4 mt-8">
-        <div class="bg-white rounded-2xl border border-slate-100 p-4 text-center shadow-sm">
+      <div class="grid grid-cols-3 gap-4 pt-4">
+        <div class="bg-white rounded-2xl border border-slate-100 p-4 text-center shadow-sm hover:shadow-md transition-all reveal reveal-up stagger-1">
           <p class="font-black text-2xl text-navy" data-ar="جراحة" data-en="Surgery">جراحة</p>
           <p class="text-xs font-bold text-slate-500 mt-1" data-ar="الفم والوجه والفكين" data-en="Oral & Maxillofacial">الفم والوجه والفكين</p>
         </div>
-        <div class="bg-white rounded-2xl border border-slate-100 p-4 text-center shadow-sm">
+        <div class="bg-white rounded-2xl border border-slate-100 p-4 text-center shadow-sm hover:shadow-md transition-all reveal reveal-up stagger-2">
           <p class="font-black text-2xl text-navy" data-ar="تجميل" data-en="Aesthetics">تجميل</p>
           <p class="text-xs font-bold text-slate-500 mt-1" data-ar="ابتسامة هوليود" data-en="Hollywood Smile">ابتسامة هوليود</p>
         </div>
-        <div class="bg-white rounded-2xl border border-slate-100 p-4 text-center shadow-sm">
+        <div class="bg-white rounded-2xl border border-slate-100 p-4 text-center shadow-sm hover:shadow-md transition-all reveal reveal-up stagger-3">
           <p class="font-black text-2xl text-navy" data-ar="زراعة" data-en="Implants">زراعة</p>
           <p class="text-xs font-bold text-slate-500 mt-1" data-ar="أحدث الأنظمة" data-en="Global Systems">أحدث الأنظمة</p>
         </div>
@@ -174,66 +228,66 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ============ SERVICES ============ -->
+<!-- ============ SERVICES (CASCADING REVEAL) ============ -->
 <section id="services" class="bg-white py-16 md:py-20 border-y border-slate-100">
   <div class="max-w-6xl mx-auto px-4">
-    <div class="text-center mb-12 reveal">
+    <div class="text-center mb-12 reveal reveal-down">
       <span class="text-orange-500 font-black text-sm tracking-widest" data-ar="خدماتنا" data-en="OUR SERVICES">خدماتنا</span>
       <h3 class="text-3xl md:text-4xl font-black text-navy mt-2" data-ar="رعاية متكاملة لصحة وجمال ابتسامتك" data-en="Comprehensive Care for Your Smile">رعاية متكاملة لصحة وجمال ابتسامتك</h3>
       <p class="text-slate-500 text-sm mt-3 max-w-xl mx-auto" data-ar="نقدم خدمات متكاملة لصحة وجمال ابتسامتك بأعلى معايير الجودة." data-en="We provide complete dental care with highest quality standards.">نقدم خدمات متكاملة لصحة وجمال ابتسامتك بأعلى معايير الجودة.</p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all reveal">
+      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all duration-300 reveal reveal-up stagger-1">
         <div class="w-12 h-12 rounded-xl bg-blue-50 text-navy group-hover:bg-white/15 group-hover:text-orange-400 flex items-center justify-center text-xl mb-4 transition-all">
           <i class="fa-solid fa-tooth"></i>
         </div>
         <h4 class="font-bold text-lg text-slate-800 group-hover:text-white transition-colors" data-ar="حشوات تجميلية وعلاج الجذور" data-en="Cosmetic Fillings & Root Canal">حشوات تجميلية وعلاج الجذور</h4>
         <p class="text-slate-500 text-sm mt-1 group-hover:text-blue-100 transition-colors" data-ar="علاج العصب بدون ألم وحشوات كومبوزيت تجميلية مطابقة للون الأسنان الطبيعي." data-en="Painless root canal therapy and natural shade-matched cosmetic fillings.">علاج العصب بدون ألم وحشوات كومبوزيت تجميلية مطابقة للون الأسنان الطبيعي.</p>
       </div>
-      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all reveal">
+      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all duration-300 reveal reveal-up stagger-2">
         <div class="w-12 h-12 rounded-xl bg-orange-50 text-orange-500 group-hover:bg-white/15 group-hover:text-orange-400 flex items-center justify-center text-xl mb-4 transition-all">
           <i class="fa-solid fa-wand-magic-sparkles"></i>
         </div>
         <h4 class="font-bold text-lg text-slate-800 group-hover:text-white transition-colors" data-ar="تبييض وتنظيف الأسنان" data-en="Teeth Whitening & Scaling">تبييض وتنظيف الأسنان</h4>
         <p class="text-slate-500 text-sm mt-1 group-hover:text-blue-100 transition-colors" data-ar="إزالة الجير بالموجات الصوتية وتلميع وتبييض بالليزر لابتسامة طبيعية مشرقة." data-en="Ultrasonic calculus removal, deep polishing, and laser whitening.">إزالة الجير بالموجات الصوتية وتلميع وتبييض بالليزر لابتسامة طبيعية مشرقة.</p>
       </div>
-      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all reveal">
+      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all duration-300 reveal reveal-up stagger-3">
         <div class="w-12 h-12 rounded-xl bg-blue-50 text-navy group-hover:bg-white/15 group-hover:text-orange-400 flex items-center justify-center text-xl mb-4 transition-all">
           <i class="fa-solid fa-screwdriver-wrench"></i>
         </div>
         <h4 class="font-bold text-lg text-slate-800 group-hover:text-white transition-colors" data-ar="زراعة الأسنان المتقدمة" data-en="Advanced Dental Implants">زراعة الأسنان المتقدمة</h4>
         <p class="text-slate-500 text-sm mt-1 group-hover:text-blue-100 transition-colors" data-ar="تعويض الأسنان المفقودة بأحدث غرسات التيتانيوم العالمية بنسب نجاح فائقة." data-en="Restoring missing teeth with premium titanium dental implants.">تعويض الأسنان المفقودة بأحدث غرسات التيتانيوم العالمية بنسب نجاح فائقة.</p>
       </div>
-      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all reveal">
+      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all duration-300 reveal reveal-up stagger-4">
         <div class="w-12 h-12 rounded-xl bg-orange-50 text-orange-500 group-hover:bg-white/15 group-hover:text-orange-400 flex items-center justify-center text-xl mb-4 transition-all">
           <i class="fa-solid fa-teeth"></i>
         </div>
         <h4 class="font-bold text-lg text-slate-800 group-hover:text-white transition-colors" data-ar="تقويم الأسنان وتعديل الفكين" data-en="Orthodontics & Aligners">تقويم الأسنان وتعديل الفكين</h4>
         <p class="text-slate-500 text-sm mt-1 group-hover:text-blue-100 transition-colors" data-ar="علاج اعوجاج وتزاحم الأسنان بالتقويم المعدني، الخزفي والتقويم الشفاف الحديث." data-en="Correcting teeth alignment with metal braces and clear aligners.">علاج اعوجاج وتزاحم الأسنان بالتقويم المعدني، الخزفي والتقويم الشفاف الحديث.</p>
       </div>
-      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all reveal">
+      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all duration-300 reveal reveal-up stagger-5">
         <div class="w-12 h-12 rounded-xl bg-blue-50 text-navy group-hover:bg-white/15 group-hover:text-orange-400 flex items-center justify-center text-xl mb-4 transition-all">
           <i class="fa-solid fa-crown"></i>
         </div>
         <h4 class="font-bold text-lg text-slate-800 group-hover:text-white transition-colors" data-ar="التركيبات الثابتة والمتحركة" data-en="Fixed & Removable Crowns">التركيبات الثابتة والمتحركة</h4>
         <p class="text-slate-500 text-sm mt-1 group-hover:text-blue-100 transition-colors" data-ar="تيجان وجسور الزيركون والإيماكس فائقة الدقة والجمال لحماية وتعويض الأسنان." data-en="High-precision Zirconia and E-max crowns & bridges.">تيجان وجسور الزيركون والإيماكس فائقة الدقة والجمال لحماية وتعويض الأسنان.</p>
       </div>
-      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all reveal">
+      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all duration-300 reveal reveal-up stagger-6">
         <div class="w-12 h-12 rounded-xl bg-orange-50 text-orange-500 group-hover:bg-white/15 group-hover:text-orange-400 flex items-center justify-center text-xl mb-4 transition-all">
           <i class="fa-solid fa-user-doctor"></i>
         </div>
         <h4 class="font-bold text-lg text-slate-800 group-hover:text-white transition-colors" data-ar="جراحة الفم والوجه والفكين" data-en="Oral & Maxillofacial Surgery">جراحة الفم والوجه والفكين</h4>
         <p class="text-slate-500 text-sm mt-1 group-hover:text-blue-100 transition-colors" data-ar="خلع جراحي ومعالجة الحالات المعقدة وضرس العقل المدفون بدقة وأمان." data-en="Surgical extractions and impacted wisdom teeth removal.">خلع جراحي ومعالجة الحالات المعقدة وضرس العقل المدفون بدقة وأمان.</p>
       </div>
-      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all reveal">
+      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all duration-300 reveal reveal-up stagger-7">
         <div class="w-12 h-12 rounded-xl bg-blue-50 text-navy group-hover:bg-white/15 group-hover:text-orange-400 flex items-center justify-center text-xl mb-4 transition-all">
           <i class="fa-solid fa-face-smile"></i>
         </div>
         <h4 class="font-bold text-lg text-slate-800 group-hover:text-white transition-colors" data-ar="تجميل وابتسامة هوليود" data-en="Hollywood Smile & Veneers">تجميل وابتسامة هوليود</h4>
         <p class="text-slate-500 text-sm mt-1 group-hover:text-blue-100 transition-colors" data-ar="فينير وعدسات تجميلية فائقة الرقة لتصميم ابتسامة متناسقة وجذابة." data-en="Ultra-thin veneers tailored for an attractive, harmonious smile.">فينير وعدسات تجميلية فائقة الرقة لتصميم ابتسامة متناسقة وجذابة.</p>
       </div>
-      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all reveal">
+      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all duration-300 reveal reveal-up stagger-8">
         <div class="w-12 h-12 rounded-xl bg-orange-50 text-orange-500 group-hover:bg-white/15 group-hover:text-orange-400 flex items-center justify-center text-xl mb-4 transition-all">
           <i class="fa-solid fa-shield-heart"></i>
         </div>
@@ -244,9 +298,9 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ============ PRICING ============ -->
+<!-- ============ PRICING (CASCADING STAGGERED REVEAL) ============ -->
 <section id="prices" class="max-w-6xl mx-auto px-4 py-16 md:py-20">
-  <div class="text-center mb-12 reveal">
+  <div class="text-center mb-12 reveal reveal-down">
     <span class="text-orange-500 font-black text-sm tracking-widest" data-ar="الأسعار التقريبية" data-en="PRICING">الأسعار التقريبية</span>
     <h3 class="text-3xl md:text-4xl font-black text-navy mt-2" data-ar="خدماتنا بأسعار تنافسية وشفافة" data-en="Transparent & Competitive Pricing">خدماتنا بأسعار تنافسية وشفافة</h3>
     <p class="text-slate-500 text-sm mt-3 max-w-xl mx-auto" data-ar="الأسعار التالية تقريبية وتختلف حسب الحالة. للحصول على تسعير دقيق، احجز استشارتك." data-en="Prices are approximate. For an exact quote, please book a consultation.">الأسعار التالية تقريبية وتختلف حسب الحالة. للحصول على تسعير دقيق، احجز استشارتك.</p>
@@ -255,7 +309,7 @@ tailwind.config = {
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     
     <!-- كارت 1 -->
-    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden reveal reveal-scale stagger-1">
       <div class="bg-gradient-to-br from-navy to-blue-800 p-4 text-white text-center">
         <i class="fa-solid fa-stethoscope text-3xl mb-2"></i>
         <h4 class="font-black text-lg" data-ar="استشارة وفحص شامل" data-en="Consultation & Exam">استشارة وفحص شامل</h4>
@@ -277,7 +331,7 @@ tailwind.config = {
     </div>
 
     <!-- كارت 2 -->
-    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden reveal reveal-scale stagger-2">
       <div class="bg-gradient-to-br from-orange-500 to-orange-600 p-4 text-white text-center">
         <i class="fa-solid fa-teeth text-3xl mb-2"></i>
         <h4 class="font-black text-lg" data-ar="تقويم الأسنان" data-en="Orthodontics (Braces)">تقويم الأسنان</h4>
@@ -299,7 +353,7 @@ tailwind.config = {
     </div>
 
     <!-- كارت 3 -->
-    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden reveal reveal-scale stagger-3">
       <div class="bg-gradient-to-br from-navy to-blue-800 p-4 text-white text-center">
         <i class="fa-solid fa-screwdriver-wrench text-3xl mb-2"></i>
         <h4 class="font-black text-lg" data-ar="زراعة الأسنان" data-en="Dental Implants">زراعة الأسنان</h4>
@@ -321,7 +375,7 @@ tailwind.config = {
     </div>
 
     <!-- كارت 4 -->
-    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden reveal reveal-scale stagger-4">
       <div class="bg-gradient-to-br from-orange-500 to-orange-600 p-4 text-white text-center">
         <i class="fa-solid fa-crown text-3xl mb-2"></i>
         <h4 class="font-black text-lg" data-ar="تركيبات وتجميل (فينير وزيركون)" data-en="Zirconia & Veneers">تركيبات وتجميل (فينير وزيركون)</h4>
@@ -343,7 +397,7 @@ tailwind.config = {
     </div>
 
     <!-- كارت 5 -->
-    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden reveal reveal-scale stagger-5">
       <div class="bg-gradient-to-br from-navy to-blue-800 p-4 text-white text-center">
         <i class="fa-solid fa-tooth text-3xl mb-2"></i>
         <h4 class="font-black text-lg" data-ar="خلع الأسنان" data-en="Tooth Extraction">خلع الأسنان</h4>
@@ -365,7 +419,7 @@ tailwind.config = {
     </div>
 
     <!-- كارت 6 -->
-    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden reveal reveal-scale stagger-6">
       <div class="bg-gradient-to-br from-orange-500 to-orange-600 p-4 text-white text-center">
         <i class="fa-solid fa-wand-magic-sparkles text-3xl mb-2"></i>
         <h4 class="font-black text-lg" data-ar="تبييض الأسنان" data-en="Teeth Whitening">تبييض الأسنان</h4>
@@ -387,7 +441,7 @@ tailwind.config = {
     </div>
 
     <!-- كارت 7 -->
-    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden reveal reveal-scale stagger-7">
       <div class="bg-gradient-to-br from-navy to-blue-800 p-4 text-white text-center">
         <i class="fa-solid fa-sparkles text-3xl mb-2"></i>
         <h4 class="font-black text-lg" data-ar="تنظيف وتلميع الأسنان" data-en="Scaling & Polishing">تنظيف وتلميع الأسنان</h4>
@@ -408,7 +462,7 @@ tailwind.config = {
     </div>
 
     <!-- كارت 8 -->
-    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden reveal reveal-scale stagger-8">
       <div class="bg-gradient-to-br from-orange-500 to-orange-600 p-4 text-white text-center">
         <i class="fa-solid fa-fill-drip text-3xl mb-2"></i>
         <h4 class="font-black text-lg" data-ar="حشوات تجميلية" data-en="Cosmetic Fillings">حشوات تجميلية</h4>
@@ -429,7 +483,7 @@ tailwind.config = {
     </div>
 
     <!-- كارت 9 -->
-    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden reveal reveal-scale stagger-9">
       <div class="bg-gradient-to-br from-navy to-blue-800 p-4 text-white text-center">
         <i class="fa-solid fa-syringe text-3xl mb-2"></i>
         <h4 class="font-black text-lg" data-ar="علاج الجذور (العصب)" data-en="Root Canal Therapy">علاج الجذور (العصب)</h4>
@@ -452,29 +506,29 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ============ WHY ============ -->
+<!-- ============ WHY (STAGGERED SCALE REVEAL) ============ -->
 <section id="why" class="max-w-6xl mx-auto px-4 py-16 md:py-20">
-  <div class="text-center mb-12 reveal">
+  <div class="text-center mb-12 reveal reveal-down">
     <span class="text-orange-500 font-black text-sm tracking-widest" data-ar="لماذا إنيجما؟" data-en="WHY ENIGMA?">لماذا إنيجما؟</span>
     <h3 class="text-3xl md:text-4xl font-black text-navy mt-2" data-ar="أربعة أسباب تثق في ابتسامتك" data-en="Four Reasons to Trust Us">أربعة أسباب تثق في ابتسامتك</h3>
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all text-center reveal">
+    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all text-center reveal reveal-up stagger-1">
       <div class="w-14 h-14 mx-auto rounded-2xl bg-navy text-white flex items-center justify-center text-2xl shadow-md"><i class="fa-solid fa-microscope"></i></div>
       <h4 class="font-bold text-slate-800 mt-4" data-ar="أحدث التقنيات" data-en="Modern Technology">أحدث التقنيات</h4>
       <p class="text-slate-500 text-sm mt-1" data-ar="أجهزة وأنظمة عالمية في التشخيص والعلاج." data-en="Global systems for accurate diagnosis.">أجهزة وأنظمة عالمية في التشخيص والعلاج.</p>
     </div>
-    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all text-center reveal">
+    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all text-center reveal reveal-up stagger-2">
       <div class="w-14 h-14 mx-auto rounded-2xl bg-orange-500 text-white flex items-center justify-center text-2xl shadow-md"><i class="fa-solid fa-clipboard-check"></i></div>
       <h4 class="font-bold text-slate-800 mt-4" data-ar="خطة واضحة" data-en="Clear Plan">خطة واضحة</h4>
       <p class="text-slate-500 text-sm mt-1" data-ar="تشخيص دقيق وشرح مبسط لكل خطوة." data-en="Accurate diagnosis & clear steps.">تشخيص دقيق وشرح مبسط لكل خطوة.</p>
     </div>
-    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all text-center reveal">
+    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all text-center reveal reveal-up stagger-3">
       <div class="w-14 h-14 mx-auto rounded-2xl bg-navy text-white flex items-center justify-center text-2xl shadow-md"><i class="fa-solid fa-hand-holding-heart"></i></div>
       <h4 class="font-bold text-slate-800 mt-4" data-ar="راحة المريض" data-en="Patient Comfort">راحة المريض</h4>
       <p class="text-slate-500 text-sm mt-1" data-ar="تجربة مريحة وخالية من التوتر." data-en="Stress-free, comfortable experience.">تجربة مريحة وخالية من التوتر.</p>
     </div>
-    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all text-center reveal">
+    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all text-center reveal reveal-up stagger-4">
       <div class="w-14 h-14 mx-auto rounded-2xl bg-orange-500 text-white flex items-center justify-center text-2xl shadow-md"><i class="fa-solid fa-gem"></i></div>
       <h4 class="font-bold text-slate-800 mt-4" data-ar="نتائج تدوم" data-en="Lasting Results">نتائج تدوم</h4>
       <p class="text-slate-500 text-sm mt-1" data-ar="خامات موثوقة ومتابعة مستمرة." data-en="Reliable materials & continuous care.">خامات موثوقة ومتابعة مستمرة.</p>
@@ -482,11 +536,11 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ============ CONTACT ============ -->
+<!-- ============ CONTACT (TWO-SIDED SLIDE REVEAL) ============ -->
 <section id="contact" class="max-w-6xl mx-auto px-4 pb-20">
-  <div class="bg-gradient-to-br from-navy to-blue-900 rounded-3xl p-6 md:p-12 text-white shadow-2xl reveal relative overflow-hidden">
+  <div class="bg-gradient-to-br from-navy to-blue-900 rounded-3xl p-6 md:p-12 text-white shadow-2xl reveal reveal-scale relative overflow-hidden">
     <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-      <div>
+      <div class="reveal reveal-right stagger-1">
         <span class="bg-orange-500/20 text-orange-300 px-3 py-1 rounded-full text-xs font-bold tracking-wider inline-flex items-center gap-2" data-ar="<i class='fa-solid fa-location-dot'></i> بيانات التواصل والزيارة" data-en="<i class='fa-solid fa-location-dot'></i> Clinic & Contact Info">
           <i class="fa-solid fa-location-dot"></i> بيانات التواصل والزيارة
         </span>
@@ -525,14 +579,14 @@ tailwind.config = {
         </div>
       </div>
 
-      <div class="flex flex-col gap-4">
-        <a href="https://api.whatsapp.com/send?phone=201002772580" target="_blank" rel="noopener noreferrer" class="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-4 rounded-2xl font-black flex items-center justify-center gap-3 shadow-lg transition-all text-lg">
+      <div class="flex flex-col gap-4 reveal reveal-left stagger-2">
+        <a href="https://api.whatsapp.com/send?phone=201002772580" target="_blank" rel="noopener noreferrer" class="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-4 rounded-2xl font-black flex items-center justify-center gap-3 shadow-lg hover:scale-105 transition-all text-lg">
           <i class="fa-brands fa-whatsapp text-2xl"></i> <span data-ar="محادثة واتساب (01002772580)" data-en="WhatsApp Chat (01002772580)">محادثة واتساب (01002772580)</span>
         </a>
-        <a href="https://www.facebook.com/Enigma.dental.care" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-4 rounded-2xl font-black flex items-center justify-center gap-3 shadow-lg transition-all text-lg">
+        <a href="https://www.facebook.com/Enigma.dental.care" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-4 rounded-2xl font-black flex items-center justify-center gap-3 shadow-lg hover:scale-105 transition-all text-lg">
           <i class="fa-brands fa-facebook-f text-2xl"></i> <span data-ar="صفحة فيسبوك" data-en="Facebook Page">صفحة فيسبوك</span>
         </a>
-        <a href="https://goo.gl/maps/6H9VtwmBkmDTPbuXA" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 border border-white/25 text-white px-6 py-4 rounded-2xl font-black flex items-center justify-center gap-3 shadow-lg transition-all text-lg">
+        <a href="https://goo.gl/maps/6H9VtwmBkmDTPbuXA" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 border border-white/25 text-white px-6 py-4 rounded-2xl font-black flex items-center justify-center gap-3 shadow-lg hover:scale-105 transition-all text-lg">
           <i class="fa-solid fa-map-location-dot text-orange-400 text-2xl"></i> <span data-ar="اللوكيشن على الخريطة" data-en="Google Maps Location">اللوكيشن على الخريطة</span>
         </a>
       </div>
@@ -541,7 +595,7 @@ tailwind.config = {
 </section>
 
 <!-- ============ FOOTER ============ -->
-<footer class="bg-white border-t border-slate-200 py-8 text-center text-xs text-slate-400">
+<footer class="bg-white border-t border-slate-200 py-8 text-center text-xs text-slate-400 reveal reveal-up">
   <div class="max-w-6xl mx-auto px-4">
     <p class="font-black text-navy text-sm">Enigma Dental Care</p>
     <p data-ar="© 2026 د. هيثم أبو العينين — عيادة إنيجما لطب الأسنان. جميع الحقوق محفوظة." data-en="© 2026 Dr. Haitham Abou El-Enein — Enigma Dental Care. All Rights Reserved.">© 2026 د. هيثم أبو العينين — عيادة إنيجما لطب الأسنان. جميع الحقوق محفوظة.</p>
@@ -736,11 +790,33 @@ tailwind.config = {
     }
   }
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // ============ ADVANCED SCROLL OBSERVER & PROGRESS BAR ============
+  // Scroll Progress Bar Tracker
+  window.addEventListener('scroll', () => {
+    const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('scroll-progress').style.width = scrolled + '%';
+  });
+
+  // Intersection Observer for Scroll Triggered Reveals
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -40px 0px',
+    threshold: 0.12
+  };
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // Unobserve so animation runs once seamlessly
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 </script>
 
 </body>
-</html>
+  </html>
