@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>د. هيثم أبو العينين | Enigma Dental Care</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        navy: { DEFAULT: '#002b80', 700: '#002463', 900: '#001a4d' },
+        brand: '#f97316',
+      },
+      fontFamily: { cairo: ['Cairo', 'sans-serif'] },
+    }
+  }
+}
+</script>
+<style>
+  body { font-family: 'Cairo', sans-serif; }
+  html { scroll-behavior: smooth; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .tooth-float { animation: floaty 6s ease-in-out infinite; }
+  @keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+  /* ===== Chatbot ===== */
+  #chat-panel { transition: transform .3s ease, opacity .3s ease; }
+  #chat-panel.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+  #chat-panel.closed { transform: translateY(20px); opacity: 0; pointer-events: none; }
+  #chat-messages::-webkit-scrollbar { width: 6px; }
+  #chat-messages::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+  .chat-msg { max-width: 85%; line-height: 1.7; word-break: break-word; }
+  .typing-dot { animation: blink 1.2s infinite; }
+  .typing-dot:nth-child(2) { animation-delay: .2s; }
+  .typing-dot:nth-child(3) { animation-delay: .4s; }
+  @keyframes blink { 0%,80%,100%{opacity:.3} 40%{opacity:1} }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-cairo">
+
+<!-- ============ NAVBAR ============ -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div>
+        <h1 class="font-black text-lg text-navy leading-tight">د. هيثم أبو العينين</h1>
+        <p class="text-[11px] font-bold text-orange-500 tracking-wide">ENIGMA DENTAL CARE · KEEPING IT SIMPLE</p>
+      </div>
+    </div>
+    <nav class="hidden md:flex items-center gap-6 text-sm font-bold text-slate-600">
+      <a href="#about" class="hover:text-navy transition-colors">نبذة</a>
+      <a href="#services" class="hover:text-navy transition-colors">الخدمات</a>
+      <a href="#prices" class="hover:text-navy transition-colors">الأسعار</a>
+      <a href="#why" class="hover:text-navy transition-colors">لماذا إنيجما</a>
+      <a href="#contact" class="hover:text-navy transition-colors">التواصل</a>
+    </nav>
+    <a href="#contact" class="bg-navy hover:bg-navy-700 text-white px-4 py-2 rounded-full font-bold text-sm flex items-center gap-2 shadow-md transition-all">
+      <i class="fa-solid fa-phone text-lg"></i>
+      <span>اتصل بنا</span>
+    </a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="text-white relative overflow-hidden">
+  <img src="https://i.ibb.co/q17Y0tS/enigma-banner.jpg" alt="Enigma Dental Care Banner" class="absolute inset-0 w-full h-full object-cover object-center">
+  <div class="absolute inset-0 bg-gradient-to-l from-navy/95 via-navy/90 to-blue-900/85"></div>
+  <div class="relative max-w-6xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <span class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-xs font-bold tracking-wider">
+        <i class="fa-solid fa-tooth text-orange-400"></i> جراحة · تجميل · زراعة الأسنان
+      </span>
+      <h2 class="text-4xl md:text-5xl font-black mt-5 leading-tight">
+        رعاية أسنان متطورة<br>
+        <span class="text-orange-400">وبأبسط الطرق</span>
+      </h2>
+      <p class="text-blue-100/90 mt-4 text-base md:text-lg leading-relaxed max-w-xl">
+        أنا <strong class="text-white">د. هيثم أبو العينين</strong> — جراحة وتجميل وزراعة الأسنان بأحدث التقنيات.
+        أؤمن أن الرعاية الممتازة تبدأ بالبساطة: تشخيص دقيق، خطة واضحة، ونتائج تدوم. أهلاً بك في عيادة إنيجما بمدينة دمنهور.
+      </p>
+      <div class="flex flex-wrap gap-3 mt-8">
+        <a href="#prices" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-xl font-bold shadow-lg transition-all flex items-center gap-2">
+          <i class="fa-solid fa-tag text-xl"></i> شوف الأسعار
+        </a>
+      </div>
+      <div class="flex flex-wrap gap-6 mt-8 text-sm text-blue-100">
+        <span class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-orange-400"></i> دمنهور — برج البنا، قبل النفق</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-clock text-orange-400"></i> السبت–الأربعاء: 2-8 مساءً</span>
+      </div>
+    </div>
+
+    <div class="hidden md:flex justify-center">
+      <div class="relative">
+        <div class="w-72 h-72 rounded-full bg-gradient-to-br from-orange-400/30 to-blue-400/20 border border-white/20 flex items-center justify-center tooth-float shadow-2xl">
+          <i class="fa-solid fa-tooth text-[110px] text-white/90 drop-shadow-lg"></i>
+        </div>
+        <div class="absolute -bottom-4 -right-2 bg-white text-navy rounded-2xl px-5 py-3 shadow-xl">
+          <p class="font-black text-lg leading-none">+15 سنة</p>
+          <p class="text-[11px] font-bold text-slate-500">خبرة في طب الأسنان</p>
+        </div>
+        <div class="absolute -top-4 -left-2 bg-orange-500 text-white rounded-2xl px-5 py-3 shadow-xl">
+          <p class="font-black text-lg leading-none">أحدث التقنيات</p>
+          <p class="text-[11px] font-bold text-orange-100">زراعة وتجميل</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <svg class="absolute bottom-0 left-0 w-full text-slate-50" viewBox="0 0 1440 60" fill="currentColor" preserveAspectRatio="none">
+    <path d="M0,32 C360,64 720,0 1080,24 C1260,36 1380,48 1440,40 L1440,60 L0,60 Z"></path>
+  </svg>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="max-w-6xl mx-auto px-4 py-16 md:py-20">
+  <div class="grid md:grid-cols-5 gap-10 items-center">
+    <div class="md:col-span-2 reveal">
+      <div class="rounded-3xl bg-gradient-to-br from-navy to-blue-800 p-1 shadow-xl">
+        <div class="rounded-[22px] bg-white p-8 text-center">
+          <h3 class="font-black text-xl text-navy mt-2">د. هيثم أبو العينين</h3>
+          <p class="text-sm font-bold text-orange-500 mt-1">جراحة وتجميل وزراعة الأسنان</p>
+          <div class="flex justify-center gap-3 mt-5">
+            <a href="https://www.facebook.com/Enigma.dental.care" target="_blank" rel="noopener noreferrer" class="h-10 w-10 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="tel:+201002772580" class="h-10 w-10 rounded-full bg-navy/10 text-navy hover:bg-navy hover:text-white flex items-center justify-center transition-all"><i class="fa-solid fa-phone"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="md:col-span-3 reveal">
+      <span class="text-orange-500 font-black text-sm tracking-widest">من أنا</span>
+      <h3 class="text-3xl md:text-4xl font-black text-navy mt-2">رعاية متطورة… وبأبسط الطرق</h3>
+      <p class="text-slate-600 leading-relaxed mt-5">
+        أنا <strong class="text-slate-800">د. هيثم محمد أبو العينين</strong>، أخصائي جراحة وتجميل وزراعة الأسنان،
+        ومؤسس عيادة <strong class="text-slate-800">Enigma Dental Care</strong> بمدينة دمنهور.
+        أمارس تخصصي في <strong class="text-slate-800">جراحة الفم والوجه والفكين</strong>، وقد شاركت في الفعاليات
+        العلمية بقسم جراحة الفم والوجه والفكين بكلية طب الأسنان — جامعة الإسكندرية.
+      </p>
+      <p class="text-slate-600 leading-relaxed mt-4">
+        فلسفتي بسيطة: <em>«Keeping It Simple»</em> — كل مريض يستحق تشخيصاً دقيقاً، وخطة علاج واضحة،
+        وتجربة مريحة من أول زيارة حتى آخر لمسة في ابتسامته. أستخدم أحدث الأنظمة العالمية في الزراعة
+        وتركيبات الزيركون والإيماكس التجميلية لضمان نتائج طبيعية تدوم.
+      </p>
+      <div class="grid grid-cols-3 gap-4 mt-8">
+        <div class="bg-white rounded-2xl border border-slate-100 p-4 text-center shadow-sm">
+          <p class="font-black text-2xl text-navy">جراحة</p>
+          <p class="text-xs font-bold text-slate-500 mt-1">الفم والوجه والفكين</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-slate-100 p-4 text-center shadow-sm">
+          <p class="font-black text-2xl text-navy">تجميل</p>
+          <p class="text-xs font-bold text-slate-500 mt-1">ابتسامة هوليود</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-slate-100 p-4 text-center shadow-sm">
+          <p class="font-black text-2xl text-navy">زراعة</p>
+          <p class="text-xs font-bold text-slate-500 mt-1">أحدث الأنظمة</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="bg-white py-16 md:py-20 border-y border-slate-100">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-12 reveal">
+      <span class="text-orange-500 font-black text-sm tracking-widest">خدماتنا</span>
+      <h3 class="text-3xl md:text-4xl font-black text-navy mt-2">رعاية متكاملة لصحة وجمال ابتسامتك</h3>
+      <p class="text-slate-500 text-sm mt-3 max-w-xl mx-auto">نقدم خدمات متكاملة لصحة وجمال ابتسامتك بأعلى معايير الجودة.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all reveal">
+        <div class="w-12 h-12 rounded-xl bg-blue-50 text-navy group-hover:bg-white/15 group-hover:text-orange-400 flex items-center justify-center text-xl mb-4 transition-all">
+          <i class="fa-solid fa-tooth"></i>
+        </div>
+        <h4 class="font-bold text-lg text-slate-800 group-hover:text-white transition-colors">حشوات تجميلية وعلاج الجذور</h4>
+        <p class="text-slate-500 text-sm mt-1 group-hover:text-blue-100 transition-colors">علاج العصب بدون ألم وحشوات كومبوزيت تجميلية مطابقة للون الأسنان الطبيعي.</p>
+      </div>
+      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all reveal">
+        <div class="w-12 h-12 rounded-xl bg-orange-50 text-orange-500 group-hover:bg-white/15 group-hover:text-orange-400 flex items-center justify-center text-xl mb-4 transition-all">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
+        <h4 class="font-bold text-lg text-slate-800 group-hover:text-white transition-colors">تبييض وتنظيف الأسنان</h4>
+        <p class="text-slate-500 text-sm mt-1 group-hover:text-blue-100 transition-colors">إزالة الجير بالموجات الصوتية وتلميع وتبييض بالليزر لابتسامة طبيعية مشرقة.</p>
+      </div>
+      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all reveal">
+        <div class="w-12 h-12 rounded-xl bg-blue-50 text-navy group-hover:bg-white/15 group-hover:text-orange-400 flex items-center justify-center text-xl mb-4 transition-all">
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+        </div>
+        <h4 class="font-bold text-lg text-slate-800 group-hover:text-white transition-colors">زراعة الأسنان المتقدمة</h4>
+        <p class="text-slate-500 text-sm mt-1 group-hover:text-blue-100 transition-colors">تعويض الأسنان المفقودة بأحدث غرسات التيتانيوم العالمية بنسب نجاح فائقة.</p>
+      </div>
+      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all reveal">
+        <div class="w-12 h-12 rounded-xl bg-orange-50 text-orange-500 group-hover:bg-white/15 group-hover:text-orange-400 flex items-center justify-center text-xl mb-4 transition-all">
+          <i class="fa-solid fa-teeth"></i>
+        </div>
+        <h4 class="font-bold text-lg text-slate-800 group-hover:text-white transition-colors">تقويم الأسنان وتعديل الفكين</h4>
+        <p class="text-slate-500 text-sm mt-1 group-hover:text-blue-100 transition-colors">علاج اعوجاج وتزاحم الأسنان بالتقويم المعدني، الخزفي والتقويم الشفاف الحديث.</p>
+      </div>
+      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all reveal">
+        <div class="w-12 h-12 rounded-xl bg-blue-50 text-navy group-hover:bg-white/15 group-hover:text-orange-400 flex items-center justify-center text-xl mb-4 transition-all">
+          <i class="fa-solid fa-crown"></i>
+        </div>
+        <h4 class="font-bold text-lg text-slate-800 group-hover:text-white transition-colors">التركيبات الثابتة والمتحركة</h4>
+        <p class="text-slate-500 text-sm mt-1 group-hover:text-blue-100 transition-colors">تيجان وجسور الزيركون والإيماكس فائقة الدقة والجمال لحماية وتعويض الأسنان.</p>
+      </div>
+      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all reveal">
+        <div class="w-12 h-12 rounded-xl bg-orange-50 text-orange-500 group-hover:bg-white/15 group-hover:text-orange-400 flex items-center justify-center text-xl mb-4 transition-all">
+          <i class="fa-solid fa-user-doctor"></i>
+        </div>
+        <h4 class="font-bold text-lg text-slate-800 group-hover:text-white transition-colors">جراحة الفم والوجه والفكين</h4>
+        <p class="text-slate-500 text-sm mt-1 group-hover:text-blue-100 transition-colors">خلع جراحي ومعالجة الحالات المعقدة وضرس العقل المدفون بدقة وأمان.</p>
+      </div>
+      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all reveal">
+        <div class="w-12 h-12 rounded-xl bg-blue-50 text-navy group-hover:bg-white/15 group-hover:text-orange-400 flex items-center justify-center text-xl mb-4 transition-all">
+          <i class="fa-solid fa-face-smile"></i>
+        </div>
+        <h4 class="font-bold text-lg text-slate-800 group-hover:text-white transition-colors">تجميل وابتسامة هوليود</h4>
+        <p class="text-slate-500 text-sm mt-1 group-hover:text-blue-100 transition-colors">فينير وعدسات تجميلية فائقة الرقة لتصميم ابتسامة متناسقة وجذابة.</p>
+      </div>
+      <div class="group bg-slate-50 hover:bg-navy p-6 rounded-2xl border border-slate-100 hover:shadow-xl transition-all reveal">
+        <div class="w-12 h-12 rounded-xl bg-orange-50 text-orange-500 group-hover:bg-white/15 group-hover:text-orange-400 flex items-center justify-center text-xl mb-4 transition-all">
+          <i class="fa-solid fa-shield-heart"></i>
+        </div>
+        <h4 class="font-bold text-lg text-slate-800 group-hover:text-white transition-colors">استشارة وفحص شامل</h4>
+        <p class="text-slate-500 text-sm mt-1 group-hover:text-blue-100 transition-colors">تشخيص دقيق وخطة علاج واضحة قبل أي إجراء — لأن البساطة تبدأ بالفهم.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="prices" class="max-w-6xl mx-auto px-4 py-16 md:py-20">
+  <div class="text-center mb-12 reveal">
+    <span class="text-orange-500 font-black text-sm tracking-widest">الأسعار التقريبية</span>
+    <h3 class="text-3xl md:text-4xl font-black text-navy mt-2">خدماتنا بأسعار تنافسية وشفافة</h3>
+    <p class="text-slate-500 text-sm mt-3 max-w-xl mx-auto">الأسعار التالية تقريبية وتختلف حسب الحالة. للحصول على تسعير دقيق، احجز استشارتك.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+      <div class="bg-gradient-to-br from-navy to-blue-800 p-4 text-white text-center">
+        <i class="fa-solid fa-stethoscope text-3xl mb-2"></i>
+        <h4 class="font-black text-lg">استشارة وفحص شامل</h4>
+      </div>
+      <div class="p-6">
+        <div class="text-center mb-4">
+          <span class="text-3xl font-black text-navy">200</span>
+          <span class="text-slate-500 font-bold">ج.م</span>
+        </div>
+        <ul class="space-y-2 text-sm text-slate-600">
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> فحص شامل بالأشعة</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> تشخيص دقيق للحالة</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> خطة علاج مفصلة</li>
+        </ul>
+        <a href="https://api.whatsapp.com/send?phone=201002772580&text=أهلاً، أحب أحجز استشارة وفحص شامل" target="_blank" class="mt-5 block w-full bg-navy hover:bg-navy-700 text-white text-center py-2.5 rounded-xl font-bold transition-all">
+          احجز الآن
+        </a>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+      <div class="bg-gradient-to-br from-orange-500 to-orange-600 p-4 text-white text-center">
+        <i class="fa-solid fa-teeth text-3xl mb-2"></i>
+        <h4 class="font-black text-lg">تقويم الأسنان</h4>
+      </div>
+      <div class="p-6">
+        <div class="text-center mb-4">
+          <span class="text-3xl font-black text-navy">12,000 - 25,000</span>
+          <span class="text-slate-500 font-bold">ج.م</span>
+        </div>
+        <ul class="space-y-2 text-sm text-slate-600">
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> تقويم معدني ثابت (أقساط ميسرة)</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> تقويم شفاف (Invisalign / Clear)</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> متابعة شهرية دورية وتعديل الإطباق</li>
+        </ul>
+        <a href="https://api.whatsapp.com/send?phone=201002772580&text=أهلاً، أحب أستفسر عن تقويم الأسنان" target="_blank" class="mt-5 block w-full bg-orange-500 hover:bg-orange-600 text-white text-center py-2.5 rounded-xl font-bold transition-all">
+          احجز الآن
+        </a>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+      <div class="bg-gradient-to-br from-navy to-blue-800 p-4 text-white text-center">
+        <i class="fa-solid fa-screwdriver-wrench text-3xl mb-2"></i>
+        <h4 class="font-black text-lg">زراعة الأسنان</h4>
+      </div>
+      <div class="p-6">
+        <div class="text-center mb-4">
+          <span class="text-3xl font-black text-navy">8,000 - 15,000</span>
+          <span class="text-slate-500 font-bold">ج.م</span>
+        </div>
+        <ul class="space-y-2 text-sm text-slate-600">
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> غرسات سويسرية وألمانية وأمريكية</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> تعويض فوري وثبات مدى الحياة</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> إجراء جراحي بدون ألم</li>
+        </ul>
+        <a href="https://api.whatsapp.com/send?phone=201002772580&text=أهلاً، أحب أستفسر عن زراعة الأسنان" target="_blank" class="mt-5 block w-full bg-navy hover:bg-navy-700 text-white text-center py-2.5 rounded-xl font-bold transition-all">
+          احجز الآن
+        </a>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+      <div class="bg-gradient-to-br from-orange-500 to-orange-600 p-4 text-white text-center">
+        <i class="fa-solid fa-crown text-3xl mb-2"></i>
+        <h4 class="font-black text-lg">تركيبات وتجميل (فينير وزيركون)</h4>
+      </div>
+      <div class="p-6">
+        <div class="text-center mb-4">
+          <span class="text-3xl font-black text-navy">2,000 - 4,500</span>
+          <span class="text-slate-500 font-bold">ج.م / سن</span>
+        </div>
+        <ul class="space-y-2 text-sm text-slate-600">
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> تاج زيركون ألماني: 2,000 - 3,000 ج.م</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> عدسات فينير وإيماكس: 2,500 - 4,500 ج.م</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> شكل ولمعان طبيعي 100%</li>
+        </ul>
+        <a href="https://api.whatsapp.com/send?phone=201002772580&text=أهلاً، أحب أستفسر عن التركيبات والفينير" target="_blank" class="mt-5 block w-full bg-orange-500 hover:bg-orange-600 text-white text-center py-2.5 rounded-xl font-bold transition-all">
+          احجز الآن
+        </a>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+      <div class="bg-gradient-to-br from-navy to-blue-800 p-4 text-white text-center">
+        <i class="fa-solid fa-tooth text-3xl mb-2"></i>
+        <h4 class="font-black text-lg">خلع الأسنان</h4>
+      </div>
+      <div class="p-6">
+        <div class="text-center mb-4">
+          <span class="text-3xl font-black text-navy">150 - 500</span>
+          <span class="text-slate-500 font-bold">ج.م</span>
+        </div>
+        <ul class="space-y-2 text-sm text-slate-600">
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> خلع بسيط: 150 - 250 ج.م</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> خلع جراحي: 350 - 500 ج.م</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> خلع ضرس العقل: 400 - 800 ج.م</li>
+        </ul>
+        <a href="https://api.whatsapp.com/send?phone=201002772580&text=أهلاً، أحب أستفسر عن خلع الأسنان" target="_blank" class="mt-5 block w-full bg-navy hover:bg-navy-700 text-white text-center py-2.5 rounded-xl font-bold transition-all">
+          احجز الآن
+        </a>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+      <div class="bg-gradient-to-br from-orange-500 to-orange-600 p-4 text-white text-center">
+        <i class="fa-solid fa-wand-magic-sparkles text-3xl mb-2"></i>
+        <h4 class="font-black text-lg">تبييض الأسنان</h4>
+      </div>
+      <div class="p-6">
+        <div class="text-center mb-4">
+          <span class="text-3xl font-black text-navy">1,500 - 3,000</span>
+          <span class="text-slate-500 font-bold">ج.م</span>
+        </div>
+        <ul class="space-y-2 text-sm text-slate-600">
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> تبييض بالليزر: 2,500 - 3,000 ج.م</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> تبييض منزلي: 1,500 - 2,000 ج.م</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> نتائج فورية من الجلسة الأولى</li>
+        </ul>
+        <a href="https://api.whatsapp.com/send?phone=201002772580&text=أهلاً، أحب أحجز جلسة تبييض" target="_blank" class="mt-5 block w-full bg-orange-500 hover:bg-orange-600 text-white text-center py-2.5 rounded-xl font-bold transition-all">
+          احجز الآن
+        </a>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+      <div class="bg-gradient-to-br from-navy to-blue-800 p-4 text-white text-center">
+        <i class="fa-solid fa-sparkles text-3xl mb-2"></i>
+        <h4 class="font-black text-lg">تنظيف وتلميع الأسنان</h4>
+      </div>
+      <div class="p-6">
+        <div class="text-center mb-4">
+          <span class="text-3xl font-black text-navy">400 - 700</span>
+          <span class="text-slate-500 font-bold">ج.م</span>
+        </div>
+        <ul class="space-y-2 text-sm text-slate-600">
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> إزالة الجير بالموجات الصوتية</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> تلميع كامل للأسنان</li>
+        </ul>
+        <a href="https://api.whatsapp.com/send?phone=201002772580&text=أهلاً، أحب أحجز جلسة تنظيف" target="_blank" class="mt-5 block w-full bg-navy hover:bg-navy-700 text-white text-center py-2.5 rounded-xl font-bold transition-all">
+          احجز الآن
+        </a>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+      <div class="bg-gradient-to-br from-orange-500 to-orange-600 p-4 text-white text-center">
+        <i class="fa-solid fa-fill-drip text-3xl mb-2"></i>
+        <h4 class="font-black text-lg">حشوات تجميلية</h4>
+      </div>
+      <div class="p-6">
+        <div class="text-center mb-4">
+          <span class="text-3xl font-black text-navy">300 - 800</span>
+          <span class="text-slate-500 font-bold">ج.م</span>
+        </div>
+        <ul class="space-y-2 text-sm text-slate-600">
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> حشو كومبوزيت: 400 - 600 ج.م</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> مطابقة لون الأسنان الطبيعي</li>
+        </ul>
+        <a href="https://api.whatsapp.com/send?phone=201002772580&text=أهلاً، أحب أستفسر عن الحشوات التجميلية" target="_blank" class="mt-5 block w-full bg-orange-500 hover:bg-orange-600 text-white text-center py-2.5 rounded-xl font-bold transition-all">
+          احجز الآن
+        </a>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal">
+      <div class="bg-gradient-to-br from-navy to-blue-800 p-4 text-white text-center">
+        <i class="fa-solid fa-syringe text-3xl mb-2"></i>
+        <h4 class="font-black text-lg">علاج الجذور (العصب)</h4>
+      </div>
+      <div class="p-6">
+        <div class="text-center mb-4">
+          <span class="text-3xl font-black text-navy">600 - 1,200</span>
+          <span class="text-slate-500 font-bold">ج.م</span>
+        </div>
+        <ul class="space-y-2 text-sm text-slate-600">
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> علاج بدون ألم بأحدث أجهزة الروتاري</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> تعقيم وإغلاق دقيق للجذور</li>
+        </ul>
+        <a href="https://api.whatsapp.com/send?phone=201002772580&text=أهلاً، أحب أستفسر عن علاج الجذور" target="_blank" class="mt-5 block w-full bg-navy hover:bg-navy-700 text-white text-center py-2.5 rounded-xl font-bold transition-all">
+          احجز الآن
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section id="why" class="max-w-6xl mx-auto px-4 py-16 md:py-20">
+  <div class="text-center mb-12 reveal">
+    <span class="text-orange-500 font-black text-sm tracking-widest">لماذا إنيجما؟</span>
+    <h3 class="text-3xl md:text-4xl font-black text-navy mt-2">أربعة أسباب تثق في ابتسامتك</h3>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all text-center reveal">
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-navy text-white flex items-center justify-center text-2xl shadow-md"><i class="fa-solid fa-microscope"></i></div>
+      <h4 class="font-bold text-slate-800 mt-4">أحدث التقنيات</h4>
+      <p class="text-slate-500 text-sm mt-1">أجهزة وأنظمة عالمية في التشخيص والعلاج.</p>
+    </div>
+    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all text-center reveal">
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-orange-500 text-white flex items-center justify-center text-2xl shadow-md"><i class="fa-solid fa-clipboard-check"></i></div>
+      <h4 class="font-bold text-slate-800 mt-4">خطة واضحة</h4>
+      <p class="text-slate-500 text-sm mt-1">تشخيص دقيق وشرح مبسط لكل خطوة.</p>
+    </div>
+    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all text-center reveal">
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-navy text-white flex items-center justify-center text-2xl shadow-md"><i class="fa-solid fa-hand-holding-heart"></i></div>
+      <h4 class="font-bold text-slate-800 mt-4">راحة المريض</h4>
+      <p class="text-slate-500 text-sm mt-1">تجربة مريحة وخالية من التوتر.</p>
+    </div>
+    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all text-center reveal">
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-orange-500 text-white flex items-center justify-center text-2xl shadow-md"><i class="fa-solid fa-gem"></i></div>
+      <h4 class="font-bold text-slate-800 mt-4">نتائج تدوم</h4>
+      <p class="text-slate-500 text-sm mt-1">خامات موثوقة ومتابعة مستمرة.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="max-w-6xl mx-auto px-4 pb-20">
+  <div class="bg-gradient-to-br from-navy to-blue-900 rounded-3xl p-6 md:p-12 text-white shadow-2xl reveal relative overflow-hidden">
+    <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <span class="bg-orange-500/20 text-orange-300 px-3 py-1 rounded-full text-xs font-bold tracking-wider inline-flex items-center gap-2">
+          <i class="fa-solid fa-location-dot"></i> بيانات التواصل والزيارة
+        </span>
+        <h3 class="text-3xl md:text-4xl font-black mt-4">تعال نرسم ابتسامتك</h3>
+        <p class="text-blue-100 text-sm mt-2 leading-relaxed">عيادة إنيجما لطب الأسنان — د. هيثم أبو العينين</p>
+
+        <div class="space-y-4 mt-7">
+          <div class="flex items-start gap-4">
+            <div class="h-11 w-11 rounded-xl bg-white/10 flex items-center justify-center text-orange-400 text-lg shrink-0"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <p class="font-bold text-sm">العنوان</p>
+              <p class="text-blue-100 text-sm">دمنهور — قبل النفق — برج البنا أعلى محلات أولاد عزت — الدور الثاني</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="h-11 w-11 rounded-xl bg-white/10 flex items-center justify-center text-orange-400 text-lg shrink-0"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <p class="font-bold text-sm">موبايل وواتساب</p>
+              <p class="text-blue-100 text-sm" dir="ltr">+20 10 02772580</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="h-11 w-11 rounded-xl bg-white/10 flex items-center justify-center text-orange-400 text-lg shrink-0"><i class="fa-solid fa-tty"></i></div>
+            <div>
+              <p class="font-bold text-sm">أرضي</p>
+              <p class="text-blue-100 text-sm" dir="ltr">0453312894</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="h-11 w-11 rounded-xl bg-white/10 flex items-center justify-center text-orange-400 text-lg shrink-0"><i class="fa-solid fa-clock"></i></div>
+            <div>
+              <p class="font-bold text-sm">مواعيد العمل</p>
+              <p class="text-blue-100 text-sm">السبت إلى الأربعاء: 2-8 مساءً (الخميس والجمعة عطلة)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <a href="https://api.whatsapp.com/send?phone=201002772580" target="_blank" rel="noopener noreferrer" class="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-4 rounded-2xl font-black flex items-center justify-center gap-3 shadow-lg transition-all text-lg">
+          <i class="fa-brands fa-whatsapp text-2xl"></i> محادثة واتساب (01002772580)
+        </a>
+        <a href="https://www.facebook.com/Enigma.dental.care" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-4 rounded-2xl font-black flex items-center justify-center gap-3 shadow-lg transition-all text-lg">
+          <i class="fa-brands fa-facebook-f text-2xl"></i> صفحة فيسبوك
+        </a>
+        <a href="https://goo.gl/maps/6H9VtwmBkmDTPbuXA" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 border border-white/25 text-white px-6 py-4 rounded-2xl font-black flex items-center justify-center gap-3 shadow-lg transition-all text-lg">
+          <i class="fa-solid fa-map-location-dot text-orange-400 text-2xl"></i> اللوكيشن على الخريطة
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-white border-t border-slate-200 py-8 text-center text-xs text-slate-400">
+  <div class="max-w-6xl mx-auto px-4">
+    <p class="font-black text-navy text-sm">Enigma Dental Care</p>
+    <p>© 2026 د. هيثم أبو العينين — عيادة إنيجما لطب الأسنان. جميع الحقوق محفوظة.</p>
+  </div>
+</footer>
+
+<!-- ============ FIXED BUTTONS ============ -->
+<a href="https://api.whatsapp.com/send?phone=201002772580" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 left-6 z-50 bg-emerald-500 hover:bg-emerald-600 text-white h-14 w-14 rounded-full flex items-center justify-center text-2xl shadow-2xl transition-all hover:scale-110" aria-label="واتساب">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<button id="chat-toggle" onclick="toggleChat()" aria-label="شات بوت" class="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-gradient-to-br from-navy to-blue-700 text-white flex items-center justify-center text-2xl shadow-2xl transition-all hover:scale-110">
+  <i class="fa-solid fa-comment-dots" id="chat-toggle-icon"></i>
+</button>
+
+<div id="chat-panel" class="closed fixed bottom-24 right-4 sm:right-6 z-50 bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col w-[350px] max-w-[calc(100vw-32px)]" style="max-height: min(520px, calc(100vh - 110px));">
+  <div class="bg-gradient-to-br from-navy to-blue-800 text-white px-4 py-3 flex items-center gap-3">
+    <div class="relative">
+      <div class="h-10 w-10 rounded-full bg-white/15 flex items-center justify-center text-lg">
+        <i class="fa-solid fa-tooth"></i>
+      </div>
+      <span class="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-emerald-400 border-2 border-white"></span>
+    </div>
+    <div class="flex-1">
+      <p class="font-black text-sm">مساعد عيادة إنيجما</p>
+      <p class="text-[10px] text-emerald-300 font-bold flex items-center gap-1"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400 inline-block"></span> متصل الآن</p>
+    </div>
+    <button onclick="toggleChat()" class="text-white/70 hover:text-white text-base"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+
+  <div id="chat-messages" class="flex-1 overflow-y-auto px-4 py-3 space-y-2.5 bg-slate-50 flex flex-col" style="min-height: 240px;"></div>
+
+  <div id="chat-quick" class="px-3 pb-2 flex flex-wrap gap-1.5 bg-slate-50"></div>
+
+  <div class="px-3 py-2.5 bg-white border-t border-slate-100 flex items-center gap-2">
+    <input id="chat-input" type="text" placeholder="اكتب سؤالك هنا…" class="flex-1 border border-slate-200 rounded-full px-4 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-navy/30 bg-slate-50" onkeydown="if(event.key==='Enter')sendUser()">
+    <button onclick="sendUser()" class="h-10 w-10 rounded-full bg-orange-500 text-white flex items-center justify-center shadow-md hover:scale-105 transition-all shrink-0"><i class="fa-solid fa-paper-plane text-xs"></i></button>
+  </div>
+</div>
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+  const WHATSAPP_URL = 'https://api.whatsapp.com/send?phone=201002772580';
+  const chatMessages = document.getElementById('chat-messages');
+  const chatQuick = document.getElementById('chat-quick');
+  const chatInput = document.getElementById('chat-input');
+
+  const quickReplies = [
+    { label: '🦷 الخدمات والأسعار', key: 'prices' },
+    { label: '🕐 المواعيد', key: 'hours' },
+    { label: '📍 العنوان', key: 'location' },
+    { label: '📞 الأرقام', key: 'phone' },
+    { label: '📲 احجز واتساب', key: 'whatsapp' },
+  ];
+
+  const replies = {
+    greeting: 'أهلاً وسهلاً بيك في عيادة إنيجما لطب الأسنان 👋\nأنا مساعد العيادة الذكي. تحب أساعدك في إيه النهاردة؟ (الخدمات والأسعار، المواعيد، العنوان، أو الحجز).',
+    services: '🦷 بنقدم خدمات متكاملة:\n\n• تقويم الأسنان (المعدني والشفاف)\n• زراعة الأسنان بأحدث الأنظمة\n• تركيبات وتجميل (زيركون، إيماكس، فينير)\n• حشوات تجميلية وعلاج الجذور (بدون ألم)\n• تبييض وتنظيف الأسنان بالليزر\n• جراحة الفم والوجه والفكين\n• تجميل وابتسامة هوليود\n• استشارة وفحص شامل',
+    prices: '💰 الأسعار التقريبية:\n\n• استشارة وفحص: 200 ج.م\n• تقويم الأسنان: 12,000 - 25,000 ج.م\n• زراعة الأسنان: 8,000 - 15,000 ج.م\n• تاج زيركون: 2,000 - 3,000 ج.م\n• فينير وإيماكس: 2,500 - 4,500 ج.م\n• خلع بسيط: 150 - 250 ج.م\n• خلع جراحي: 350 - 500 ج.م\n• تنظيف وتلميع: 400 - 700 ج.م\n• حشو كومبوزيت: 400 - 600 ج.م\n• علاج جذور: 600 - 1,200 ج.م\n• تبييض ليزر: 2,500 - 3,000 ج.م\n\nللحجز والاستفسار الدقيق 👇\n' + WHATSAPP_URL,
+    hours: '🕐 مواعيد العمل في العيادة:\n\nمن السبت إلى الأربعاء: 2-8 مساءً\n(يومي الخميس والجمعة عطلة)',
+    location: '📍 العنوان:\n\nدمنهور — قبل النفق — برج البنا أعلى محلات أولاد عزت — الدور الثاني\n\nاضغط هنا لفتح اللوكيشن على الخريطة 👇\nhttps://goo.gl/maps/6H9VtwmBkmDTPbuXA',
+    phone: '📞 أرقام التواصل:\n\n• موبايل / واتساب: +20 10 02772580\n• أرضي: 0453312894',
+    whatsapp: '📲 للحجز والاستفسار السريع، ابعتلنا واتساب:\n\n' + WHATSAPP_URL,
+    fallback: 'معنديش إجابة واضحة على ده 🤔 بس أقدر أساعدك في الأسعار، الخدمات، المواعيد، أو العنوان. أو ابعتلنا واتساب مباشرة 👇\n' + WHATSAPP_URL,
+  };
+
+  function matchReply(text) {
+    const t = text.toLowerCase();
+    if (/(سلام|اهلا|مرحبا|هلا|هاي|hi|hello|hey)/.test(t)) return 'greeting';
+    if (/(مواعيد|ساعات|وقت|ميعاد|مفتوح|الجمعة|السبت|الاربع|الاربعاء|الخميس)/.test(t)) return 'hours';
+    if (/(عنوان|لوكيشن|مكان|فين|موقع|دمنهور|النفق|برج البنا)/.test(t)) return 'location';
+    if (/(رقم|تليفون|موبايل|اتصال|ارقام)/.test(t)) return 'phone';
+    if (/(حجز|احجز|موعد|واتساب|book)/.test(t)) return 'whatsapp';
+    if (/(سعر|تكلفة|بكام|كام|اسعار|أسعار|تقويم|زراعة|فينير|زيركون)/.test(t)) return 'prices';
+    if (/(خدمات|الخدمات|كشف|تنظيف|تبييض|حشو|عصب|تركيبات)/.test(t)) return 'services';
+    return 'fallback';
+  }
+
+  function addMessage(text, who) {
+    const div = document.createElement('div');
+    div.className = 'chat-msg ' + (who === 'user' ? 'self-end bg-navy text-white rounded-2xl rounded-br-sm px-3.5 py-2 text-xs sm:text-sm' : 'self-start bg-white border border-slate-100 text-slate-700 rounded-2xl rounded-bl-sm px-3.5 py-2 text-xs sm:text-sm shadow-sm whitespace-pre-line');
+    div.textContent = text;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function addTyping() {
+    const div = document.createElement('div');
+    div.className = 'chat-msg self-start bg-white border border-slate-100 rounded-2xl rounded-bl-sm px-4 py-3 shadow-sm flex items-center gap-1';
+    div.innerHTML = '<span class="typing-dot h-2 w-2 rounded-full bg-slate-400 inline-block"></span><span class="typing-dot h-2 w-2 rounded-full bg-slate-400 inline-block"></span><span class="typing-dot h-2 w-2 rounded-full bg-slate-400 inline-block"></span>';
+    div.id = 'typing';
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function removeTyping() {
+    const el = document.getElementById('typing');
+    if (el) el.remove();
+  }
+
+  function sendUser() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+    addMessage(text, 'user');
+    chatInput.value = '';
+    addTyping();
+    setTimeout(() => {
+      removeTyping();
+      addMessage(replies[matchReply(text)], 'bot');
+      showQuick();
+    }, 800);
+  }
+
+  function quickSend(key) {
+    addMessage(quickReplies.find(q => q.key === key).label, 'user');
+    addTyping();
+    setTimeout(() => {
+      removeTyping();
+      addMessage(replies[key], 'bot');
+    }, 700);
+  }
+
+  function showQuick() {
+    chatQuick.innerHTML = '';
+    quickReplies.forEach(q => {
+      const b = document.createElement('button');
+      b.textContent = q.label;
+      b.className = 'text-[11px] font-bold bg-white border border-slate-200 text-navy rounded-full px-2.5 py-1 hover:bg-navy hover:text-white transition-all shadow-sm';
+      b.onclick = () => quickSend(q.key);
+      chatQuick.appendChild(b);
+    });
+  }
+
+  function toggleChat() {
+    const panel = document.getElementById('chat-panel');
+    const icon = document.getElementById('chat-toggle-icon');
+    const isOpen = panel.classList.contains('open');
+    panel.classList.toggle('open', !isOpen);
+    panel.classList.toggle('closed', isOpen);
+    icon.className = isOpen ? 'fa-solid fa-comment-dots' : 'fa-solid fa-xmark';
+    if (!isOpen && chatMessages.children.length === 0) {
+      addTyping();
+      setTimeout(() => {
+        removeTyping();
+        addMessage(replies.greeting, 'bot');
+        showQuick();
+      }, 700);
+    }
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
