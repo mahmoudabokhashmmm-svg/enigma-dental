@@ -177,7 +177,7 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ============ REAL CLINICAL CASES SECTION (المسارات المباشرة بدون cases/) ============ -->
+<!-- ============ REAL CLINICAL CASES SECTION ============ -->
 <section id="cases" class="bg-slate-900 text-white py-16 md:py-20 border-y border-slate-800">
   <div class="max-w-6xl mx-auto px-4">
     <div class="text-center mb-12 reveal">
@@ -186,7 +186,7 @@ tailwind.config = {
       <p class="text-slate-400 text-xs sm:text-sm mt-2 max-w-2xl mx-auto" data-ar="توثيق احترافي لعمليات تصحيح الفكين والتخطيط الجراحي الرقمي ثلاثي الأبعاد (Virtual Surgical Planning) بإشراف د. هيثم أبو العينين." data-en="Professional documentation of jaw correction surgeries and 3D virtual planning by Dr. Haitham Abou El-Enein.">توثيق احترافي لعمليات تصحيح الفكين والتخطيط الجراحي الرقمي ثلاثي الأبعاد (Virtual Surgical Planning) بإشراف د. هيثم أبو العينين.</p>
     </div>
 
-    <!-- 1. شبكة الفيديوهات الثلاثة -->
+    <!-- شبكة الفيديوهات -->
     <div class="mb-12">
       <h4 class="text-lg font-bold text-orange-400 mb-4 flex items-center gap-2">
         <i class="fa-solid fa-circle-play"></i>
@@ -194,11 +194,12 @@ tailwind.config = {
       </h4>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <!-- فيديو 1 -->
+        <!-- فيديو 1 (1:18) -->
         <div class="bg-slate-800/80 rounded-2xl p-4 border border-slate-700 shadow-xl flex flex-col justify-between reveal">
           <div class="relative aspect-video rounded-xl overflow-hidden bg-black mb-3">
-            <video controls preload="metadata" class="w-full h-full object-cover">
+            <video controls playsinline preload="auto" class="w-full h-full object-cover">
               <source src="video1.mp4" type="video/mp4">
+              <source src="video1.MP4" type="video/mp4">
               متصفحك لا يدعم الفيديو
             </video>
           </div>
@@ -209,11 +210,12 @@ tailwind.config = {
           </div>
         </div>
 
-        <!-- فيديو 2 -->
+        <!-- فيديو 2 (3:51) -->
         <div class="bg-slate-800/80 rounded-2xl p-4 border border-slate-700 shadow-xl flex flex-col justify-between reveal">
           <div class="relative aspect-video rounded-xl overflow-hidden bg-black mb-3">
-            <video controls preload="metadata" class="w-full h-full object-cover">
+            <video controls playsinline preload="auto" class="w-full h-full object-cover">
               <source src="video2.mp4" type="video/mp4">
+              <source src="video2.MP4" type="video/mp4">
               متصفحك لا يدعم الفيديو
             </video>
           </div>
@@ -224,11 +226,12 @@ tailwind.config = {
           </div>
         </div>
 
-        <!-- فيديو 3 -->
+        <!-- فيديو 3 (1:40) -->
         <div class="bg-slate-800/80 rounded-2xl p-4 border border-slate-700 shadow-xl flex flex-col justify-between reveal">
           <div class="relative aspect-video rounded-xl overflow-hidden bg-black mb-3">
-            <video controls preload="metadata" class="w-full h-full object-cover">
+            <video controls playsinline preload="auto" class="w-full h-full object-cover">
               <source src="video3.mp4" type="video/mp4">
+              <source src="video3.MP4" type="video/mp4">
               متصفحك لا يدعم الفيديو
             </video>
           </div>
@@ -242,7 +245,7 @@ tailwind.config = {
       </div>
     </div>
 
-    <!-- 2. شبكة صور الأشعة والنتائج الثلاثة -->
+    <!-- شبكة الصور مع معالجة الامتدادات التلقائية -->
     <div>
       <h4 class="text-lg font-bold text-emerald-400 mb-4 flex items-center gap-2">
         <i class="fa-solid fa-images"></i>
@@ -253,7 +256,9 @@ tailwind.config = {
         <!-- صورة 1 -->
         <div class="bg-slate-800/60 rounded-2xl p-4 border border-slate-700 flex flex-col justify-between reveal">
           <div class="aspect-[4/3] bg-black rounded-xl overflow-hidden mb-3 flex items-center justify-center p-1">
-            <img src="photo1.jpg" alt="Airway Space Analysis" class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300">
+            <img src="photo1.jpg" 
+                 onerror="if (!this.tried) { this.tried=1; this.src='photo1.jpeg'; } else if (this.tried===1) { this.tried=2; this.src='photo1.png'; } else if (this.tried===2) { this.tried=3; this.src='photo1.JPG'; }" 
+                 alt="Airway Space Analysis" class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300">
           </div>
           <div>
             <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-bold">Airway Analysis</span>
@@ -265,7 +270,9 @@ tailwind.config = {
         <!-- صورة 2 -->
         <div class="bg-slate-800/60 rounded-2xl p-4 border border-slate-700 flex flex-col justify-between reveal">
           <div class="aspect-[4/3] bg-black rounded-xl overflow-hidden mb-3 flex items-center justify-center p-1">
-            <img src="photo2.jpg" alt="Occlusion Alignment" class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300">
+            <img src="photo2.jpg" 
+                 onerror="if (!this.tried) { this.tried=1; this.src='photo2.jpeg'; } else if (this.tried===1) { this.tried=2; this.src='photo2.png'; } else if (this.tried===2) { this.tried=3; this.src='photo2.JPG'; }" 
+                 alt="Occlusion Alignment" class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300">
           </div>
           <div>
             <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-bold">Smile Finishing</span>
@@ -277,7 +284,9 @@ tailwind.config = {
         <!-- صورة 3 -->
         <div class="bg-slate-800/60 rounded-2xl p-4 border border-slate-700 flex flex-col justify-between reveal">
           <div class="aspect-[4/3] bg-black rounded-xl overflow-hidden mb-3 flex items-center justify-center p-1">
-            <img src="photo3.jpg" alt="Cephalometric X-Ray" class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300">
+            <img src="photo3.jpg" 
+                 onerror="if (!this.tried) { this.tried=1; this.src='photo3.jpeg'; } else if (this.tried===1) { this.tried=2; this.src='photo3.png'; } else if (this.tried===2) { this.tried=3; this.src='photo3.JPG'; }" 
+                 alt="Cephalometric X-Ray" class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300">
           </div>
           <div>
             <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-bold">Cephalometric X-Ray</span>
@@ -963,3 +972,4 @@ tailwind.config = {
 
 </body>
 </html>
+
