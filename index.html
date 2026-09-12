@@ -64,7 +64,6 @@ tailwind.config = {
       <a href="#contact" class="hover:text-navy transition-colors" data-ar="التواصل" data-en="Contact">التواصل</a>
     </nav>
 
-    <!-- أزرار الهيدر -->
     <div class="flex items-center gap-2">
       <button onclick="toggleLanguage()" class="border border-slate-200 bg-slate-100 hover:bg-slate-200 text-navy px-3 py-1.5 rounded-full font-bold text-xs flex items-center gap-1.5 transition-all shadow-2xs">
         <i class="fa-solid fa-globe text-orange-500"></i>
@@ -178,7 +177,7 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ============ REAL CLINICAL CASES SECTION (3 فيديوهات + 3 صور) ============ -->
+<!-- ============ REAL CLINICAL CASES SECTION (المسارات المباشرة بدون cases/) ============ -->
 <section id="cases" class="bg-slate-900 text-white py-16 md:py-20 border-y border-slate-800">
   <div class="max-w-6xl mx-auto px-4">
     <div class="text-center mb-12 reveal">
@@ -199,7 +198,7 @@ tailwind.config = {
         <div class="bg-slate-800/80 rounded-2xl p-4 border border-slate-700 shadow-xl flex flex-col justify-between reveal">
           <div class="relative aspect-video rounded-xl overflow-hidden bg-black mb-3">
             <video controls preload="metadata" class="w-full h-full object-cover">
-              <source src="cases/video1.mp4" type="video/mp4">
+              <source src="video1.mp4" type="video/mp4">
               متصفحك لا يدعم الفيديو
             </video>
           </div>
@@ -214,7 +213,7 @@ tailwind.config = {
         <div class="bg-slate-800/80 rounded-2xl p-4 border border-slate-700 shadow-xl flex flex-col justify-between reveal">
           <div class="relative aspect-video rounded-xl overflow-hidden bg-black mb-3">
             <video controls preload="metadata" class="w-full h-full object-cover">
-              <source src="cases/video2.mp4" type="video/mp4">
+              <source src="video2.mp4" type="video/mp4">
               متصفحك لا يدعم الفيديو
             </video>
           </div>
@@ -229,7 +228,7 @@ tailwind.config = {
         <div class="bg-slate-800/80 rounded-2xl p-4 border border-slate-700 shadow-xl flex flex-col justify-between reveal">
           <div class="relative aspect-video rounded-xl overflow-hidden bg-black mb-3">
             <video controls preload="metadata" class="w-full h-full object-cover">
-              <source src="cases/video3.mp4" type="video/mp4">
+              <source src="video3.mp4" type="video/mp4">
               متصفحك لا يدعم الفيديو
             </video>
           </div>
@@ -254,7 +253,7 @@ tailwind.config = {
         <!-- صورة 1 -->
         <div class="bg-slate-800/60 rounded-2xl p-4 border border-slate-700 flex flex-col justify-between reveal">
           <div class="aspect-[4/3] bg-black rounded-xl overflow-hidden mb-3 flex items-center justify-center p-1">
-            <img src="cases/photo1.jpg" alt="Airway Space Analysis" class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300">
+            <img src="photo1.jpg" alt="Airway Space Analysis" class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300">
           </div>
           <div>
             <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-bold">Airway Analysis</span>
@@ -266,7 +265,7 @@ tailwind.config = {
         <!-- صورة 2 -->
         <div class="bg-slate-800/60 rounded-2xl p-4 border border-slate-700 flex flex-col justify-between reveal">
           <div class="aspect-[4/3] bg-black rounded-xl overflow-hidden mb-3 flex items-center justify-center p-1">
-            <img src="cases/photo2.jpg" alt="Occlusion Alignment" class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300">
+            <img src="photo2.jpg" alt="Occlusion Alignment" class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300">
           </div>
           <div>
             <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-bold">Smile Finishing</span>
@@ -278,7 +277,7 @@ tailwind.config = {
         <!-- صورة 3 -->
         <div class="bg-slate-800/60 rounded-2xl p-4 border border-slate-700 flex flex-col justify-between reveal">
           <div class="aspect-[4/3] bg-black rounded-xl overflow-hidden mb-3 flex items-center justify-center p-1">
-            <img src="cases/photo3.jpg" alt="Cephalometric X-Ray" class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300">
+            <img src="photo3.jpg" alt="Cephalometric X-Ray" class="max-h-full max-w-full object-contain hover:scale-105 transition-transform duration-300">
           </div>
           <div>
             <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-bold">Cephalometric X-Ray</span>
@@ -372,7 +371,6 @@ tailwind.config = {
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <!-- كارت 1 -->
     <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal flex flex-col justify-between">
       <div>
         <div class="bg-gradient-to-br from-navy to-blue-800 p-4 text-white text-center">
@@ -396,7 +394,6 @@ tailwind.config = {
       </div>
     </div>
 
-    <!-- كارت 2 -->
     <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal flex flex-col justify-between">
       <div>
         <div class="bg-gradient-to-br from-orange-500 to-orange-600 p-4 text-white text-center">
@@ -420,7 +417,6 @@ tailwind.config = {
       </div>
     </div>
 
-    <!-- كارت 3 -->
     <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal flex flex-col justify-between">
       <div>
         <div class="bg-gradient-to-br from-navy to-blue-800 p-4 text-white text-center">
@@ -444,7 +440,6 @@ tailwind.config = {
       </div>
     </div>
 
-    <!-- كارت 4 -->
     <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal flex flex-col justify-between">
       <div>
         <div class="bg-gradient-to-br from-orange-500 to-orange-600 p-4 text-white text-center">
@@ -468,7 +463,6 @@ tailwind.config = {
       </div>
     </div>
 
-    <!-- كارت 5 -->
     <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal flex flex-col justify-between">
       <div>
         <div class="bg-gradient-to-br from-navy to-blue-800 p-4 text-white text-center">
@@ -492,7 +486,6 @@ tailwind.config = {
       </div>
     </div>
 
-    <!-- كارت 6 -->
     <div class="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden reveal flex flex-col justify-between">
       <div>
         <div class="bg-gradient-to-br from-orange-500 to-orange-600 p-4 text-white text-center">
@@ -970,4 +963,3 @@ tailwind.config = {
 
 </body>
 </html>
-
